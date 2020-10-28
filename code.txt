@@ -1,0 +1,97 @@
+#implementing Support Vector Machine (SVM) algorithm and model
+
+model= svm.SVC(gamma='auto')
+model.fit(train_X, train_y)
+prediction= model.predict(test_X) #prediction based on testing_set
+print('The accuracy of the SVM is: ', metrices.accuracy_score(prediction, test_y))
+expected= train_y #expected result stored in training_set
+predicted= model.predict(train_X)
+print('Classification report:')
+print(metrices.classification_report(expected,predicted)) #calculating classification report
+print('Confusion matrix:')
+print(metrices.confusion_matrix(expected,predicted)) #calculating confusion matrix
+
+
+
+In[51]:  #importing libraries
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from pandas import Series,DataFrame
+%matplotlib inline
+
+In[53]:  ids= pd.read_csv(r"D:\\Datasets\\UNSM-NB15.csv") #loading dataset into local repository
+
+In[54]:  ids.head() #showing data of dataset
+
+In[55]: ids.infor() #dataset information
+
+In[56]: #importing algorithms and functions
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn impprt svm
+from sklearn import metrices
+from sklearn.naive_bayes import GaussianNB
+
+In[57]: ids.shape
+
+
+For heat-map:
+
+In[8]:  #generating Heat-map for accurate classification
+
+plt.figure(figsize=(8,4))
+sns.heatmap(ids.corr(), annot=True, cmap='cubehelix_r')
+print('Heat-map:')
+plt.show()
+
+For training and Testing phase:
+
+In[58]: train, test= train_split(ids, test_size=0.3) #spliting iris dataset into training and testing sets with split percentage
+print(train.shape) #showing training_set
+print(test.shape) #showing testing_set
+
+In[59]: train_X=train[['scrip','sport','dspit','dsport','proto','state','dur','sbytes','sttl','sloss','dloss','Sload']] #setting testing and trsining attribute and class values
+train_y=train.Label
+
+ train_X=train[['scrip','sport','dspit','dsport','proto','state','dur','sbytes','sttl','sloss','dloss','Sload']] #setting testing and trsining attribute and class values
+train_y=test.Label
+
+In[60]: train_X.head() #showing training_set data for X-axis
+
+In[61]: test_X.head() #showing testing_set data for X-axis
+
+In[62]: train_y.head() #showing training_set data for y-axis
+
+In[63]: test_y.head() #showing testing_set data for y-axis
+
+#implementing K-Nearest Neighbour (KNN) algorithm and model
+
+model= KneighborsClassifier(n_neighbors=3)
+model.fit(train_X, train_y)
+prediction= model.predict(test_X) #prediction based on testing_set
+print('The accuracy of the KNN is: ', metrices.accuracy_score(prediction, test_y))
+expected= train_y #expected result stored in training_set
+predicted= model.predict(train_X)
+print('Classification report:')
+print(metrices.classification_report(expected,predicted)) #calculating classification report
+print('Confusion matrix:')
+print(metrices.confusion_matrix(expected,predicted)) #calculating confusion matrix
+
+
+#implementing Navie Bayes (NB) algorithm and model
+
+model= GaussianNB()
+model.fit(train_X, train_y)
+prediction= model.predict(test_X) #prediction based on testing_set
+print('The accuracy of the NB is: ', metrices.accuracy_score(prediction, test_y))
+expected= train_y #expected result stored in training_set
+predicted= model.predict(train_X)
+print('Classification report:')
+print(metrices.classification_report(expected,predicted)) #calculating classification report
+print('Confusion matrix:')
+print(metrices.confusion_matrix(expected,predicted)) #calculating confusion matrix
